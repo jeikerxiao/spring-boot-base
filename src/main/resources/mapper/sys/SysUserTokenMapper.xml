@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sinocare.base.dao.sys.SysUserTokenMapper">
+  <!--<resultMap id="BaseResultMap" type="com.sinocare.base.po.sys.SysUserToken">-->
+    <!--&lt;!&ndash;-->
+      <!--WARNING - @mbg.generated-->
+    <!--&ndash;&gt;-->
+    <!--<id column="user_id" jdbcType="BIGINT" property="userId" />-->
+    <!--<result column="token" jdbcType="VARCHAR" property="token" />-->
+    <!--<result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />-->
+    <!--<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />-->
+  <!--</resultMap>-->
+
+  <select id="queryByToken" resultType="com.sinocare.base.po.sys.SysUserToken">
+    select * from sys_user_token where token = #{value}
+  </select>
+
+</mapper>

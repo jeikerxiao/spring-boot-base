@@ -1,0 +1,98 @@
+# Tomcat
+server:
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+  port: 8080
+  connection-timeout: 60000
+
+spring:
+  # 环境 dev|test|prod
+  profiles:
+    active: dev
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: true
+  # jackson时间格式化
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      filter-class-names: stat,wall,log4j
+      filter:
+        stat:
+          log-slow-sql: true
+  redis:
+    database: 1
+    host: 192.168.234.97
+    port: 6379
+    password: 123456    # 密码（默认为空）
+    timeout: 60000       # 连接超时时长（毫秒）
+  # 国际化
+  messages:
+    basename: i18n/messages
+    cache-seconds: 3600  #设定加载的资源文件缓存失效时间，-1的话为永不过期，默认为-1
+
+# logging
+logging:
+  level:
+    com.sinocare.base.dao: debug
+  file: logs/spring-boot-base.log
+
+# mybatis
+mybatis:
+  type-aliases-package: com.sinocare.base.po
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# mapper
+mapper:
+  mappers: com.sinocare.base.core.MyMapper
+  identity: MYSQL
+  not-empty: false
+
+# pagehelper
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+# swagger
+swagger:
+  title: spring-boot-base
+  description: spring-boot-base
+  version: 1.0
+  contact:
+    email: jeiker@126.com
+    name: jeikerxiao
+    url: www.jeiker.cn
+  base-package: com.sinocare.base.web
+  ui-config:
+    json-editor: true
+    show-request-headers: true
+    request-timeout: 5000
+  # 全局参数：设置token
+  global-operation-parameters:
+    - name: token
+      description: user token
+      modelRef: string
+      parameterType: header
+      required: true
+
+
+

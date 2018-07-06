@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sinocare.base.dao.log.SysLogMapper">
+  <resultMap id="BaseResultMap" type="com.sinocare.base.po.log.SysLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="time" jdbcType="BIGINT" property="time" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+  </resultMap>
+</mapper>

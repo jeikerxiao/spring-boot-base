@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.jeiker.base</groupId>
+	<groupId>com.sinocare.base</groupId>
 	<artifactId>spring-boot-base</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -15,13 +15,34 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.14.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+
+		<mybatis.version>1.3.2</mybatis.version>
+		<tk.mybatis.version>1.2.4</tk.mybatis.version>
+		<pagehelper.version>1.2.5</pagehelper.version>
+		<druid.version>1.1.10</druid.version>
+		<fastjson.version>1.2.44</fastjson.version>
+		<shiro.version>1.4.0</shiro.version>
+		<hutool.version>4.1.1</hutool.version>
+		<guava.version>23.0</guava.version>
+		<commons-lang3.version>3.6</commons-lang3.version>
+		<swagger.version>1.7.0.RELEASE</swagger.version>
+		<swagger2markup.version>1.3.1</swagger2markup.version>
+		<mybatis-generator.version>1.3.5</mybatis-generator.version>
+
+		<!-- wagon plugin 配置 -->
+		<service-path>/opt/www/sinocare-base</service-path>
+		<java-home>/opt/software/jdk1.8.0_171/bin</java-home>
+		<pack-name>${project.artifactId}.jar</pack-name>
+		<remote-addr>192.168.234.97:22</remote-addr>
+		<remote-username>root</remote-username>
+		<remote-passwd>123456</remote-passwd>
 	</properties>
 
 	<dependencies>
@@ -29,27 +50,172 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- 测试 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper-spring-boot-starter</artifactId>
+			<version>${tk.mybatis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>${pagehelper.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<!--shiro-->
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-core</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.shiro</groupId>
+			<artifactId>shiro-spring</artifactId>
+			<version>${shiro.version}</version>
+		</dependency>
+        <!--阿里 Druid Spring Boot Starter依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+		<!--阿里 FastJson依赖-->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<!-- swagger -->
+		<dependency>
+			<groupId>com.spring4all</groupId>
+			<artifactId>swagger-spring-boot-starter</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.swagger2markup</groupId>
+			<artifactId>swagger2markup</artifactId>
+			<version>${swagger2markup.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!--常用库依赖-->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commons-lang3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-core</artifactId>
+			<version>${hutool.version}</version>
+		</dependency>
+		<!--代码生成器依赖-->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-core</artifactId>
+			<version>${mybatis-generator.version}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-ssh</artifactId>
+				<version>2.8</version>
+			</extension>
+		</extensions>
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- 跳过单元测试 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+			</plugin>
+			<!-- wagon 远程部署 -->
+			<plugin>
+				<!-- 运行命令 mvn clean package wagon:upload-single wagon:sshexec -->
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>wagon-maven-plugin</artifactId>
+				<version>1.0</version>
+				<configuration>
+					<fromFile>target/${pack-name}</fromFile>
+					<url><![CDATA[scp://${remote-username}:${remote-passwd}@${remote-addr}${service-path}]]></url>
+					<commands>
+						<!-- Kill 旧线程，如果没有旧线程，注释掉此句 -->
+						<!--<command><![CDATA[kill -9 `ps -ef |grep ${project.artifactId}.jar|grep -v "grep" |awk '{print $2}'`]]></command>-->
+						<!-- nohup 启动进程并写入日志到 spring-boot-base.log -->
+						<command><![CDATA[nohup ${java-home}/java -jar ${service-path}/${pack-name} --spring.profiles.active=test > ${service-path}/spring-boot-base.log 2>&1 & ]]></command>
+						<!-- 查看服务器端口 -->
+						<command><![CDATA[netstat -nptl]]></command>
+						<!-- 查看服务器进程 -->
+						<command><![CDATA[ps -ef | grep java | grep -v grep]]></command>
+					</commands>
+					<displayCommandOutputs>true</displayCommandOutputs>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
+	<repositories>
+		<repository>
+			<id>public</id>
+			<name>aliyun nexus</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
 
 </project>
