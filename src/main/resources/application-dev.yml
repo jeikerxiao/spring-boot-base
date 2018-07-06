@@ -6,8 +6,8 @@ spring:
     druid:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://192.168.234.97:3306/mydb?useSSL=false
-      username: xxx
-      password: xxx
+      username: sino
+      password: 123456
       initial-size: 10
       max-active: 100
       min-idle: 10
