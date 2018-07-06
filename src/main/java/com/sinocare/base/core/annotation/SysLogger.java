@@ -3,7 +3,7 @@ package com.sinocare.base.core.annotation;
 import java.lang.annotation.*;
 
 /**
- * Description: spring-boot-base
+ * Description: 操作日志注解
  * Created by jeikerxiao on 2018/6/28 上午11:44
  */
 @Target(ElementType.METHOD)
