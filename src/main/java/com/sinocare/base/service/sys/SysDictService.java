@@ -7,7 +7,7 @@ import com.sinocare.base.po.sys.SysDict;
 /**
  * SysDict
  *
- * @version 2018/06/29
+ * @version 2018/07/06
  * @author jeikerxiao
  */
 public interface SysDictService extends Service<SysDict> {

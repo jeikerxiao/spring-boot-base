@@ -8,7 +8,6 @@ import com.sinocare.base.dto.common.IdVo;
 import com.sinocare.base.dto.common.PageVo;
 import com.sinocare.base.po.sys.SysDict;
 import com.sinocare.base.service.sys.SysDictService;
-import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +20,9 @@ import java.util.List;
 /**
  * SysDict
  *
- * @version 2018/06/29
+ * @version 2018/07/06
  * @author jeikerxiao
  */
-@Api("字典管理")
 @RestController
 @RequestMapping("/sys/dict")
 public class SysDictController {

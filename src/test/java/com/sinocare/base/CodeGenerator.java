@@ -21,7 +21,7 @@ import static com.sinocare.base.ProjectConstant.*;
  */
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
-    private static final String JDBC_URL = "jdbc:mysql://192.168.234.97:3306/mydb";
+    private static final String JDBC_URL = "jdbc:mysql://192.168.234.97:3306/mydb?useSSL=false";
     private static final String JDBC_USERNAME = "sino";
     private static final String JDBC_PASSWORD = "123456";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
@@ -40,7 +40,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("sys_captcha");
+        genCode("sys_dict");
         //genCode("输入表名");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
