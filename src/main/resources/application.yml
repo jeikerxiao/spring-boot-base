@@ -48,9 +48,10 @@ spring:
 
 # logging
 logging:
+  config: classpath:log4j2.properties # 使用log4j2日志架构，性能更优
   level:
     com.sinocare.base.dao: debug
-  file: logs/spring-boot-base.log
+#  file: logs/spring-boot-base.log
 
 # mybatis
 mybatis:

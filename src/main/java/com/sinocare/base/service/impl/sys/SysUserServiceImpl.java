@@ -11,8 +11,8 @@ import com.sinocare.base.service.sys.SysUserRoleService;
 import com.sinocare.base.service.sys.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.RandomStringGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +45,9 @@ public class SysUserServiceImpl extends AbstractService<SysUser> implements SysU
     @Transactional
     public void add(SysUser user) {
         //sha256加密
-        String salt = RandomStringUtils.randomAlphanumeric(20);
+        RandomStringGenerator generator = new RandomStringGenerator.Builder()
+                .withinRange('a', 'z').build();
+        String salt = generator.generate(20);
         user.setPassword(new Sha256Hash(user.getPassword(), salt).toHex());
         user.setSalt(salt);
         user.setCreateTime(new Date());
